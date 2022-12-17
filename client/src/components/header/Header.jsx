@@ -20,12 +20,12 @@ const header = () => {
         <StyledAppBar>
             <Toolbar style={{ minHeight: 55 }}>
                 <StyledBox>
-                    <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png" alt="flipkart" style={{ width: '75px' }} />
+                    <img src='flipkart-plus_8d85f4.png' alt="flipkart" style={{ width: '75px' }} />
                     <Box style={{ display: 'flex' }}>
                         <SubHeading>Explore
                             <Box component='span' style={{ color: '#FFE500' }}> Plus</Box>
                         </SubHeading>
-                        <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/plus_aef861.png" alt="plus-icon" style={{ width: '10px', height: 10, marginLeft: 4 }} />
+                        <img src="plus_aef861.png" alt="plus-icon" style={{ width: '10px', height: 10, marginLeft: 4 }} />
                     </Box>
                 </StyledBox>
                 <Search />
