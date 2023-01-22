@@ -1,6 +1,6 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css"
-import { bannerData } from "../constants/data";
+import { bannerData } from "../../constants/data";
 import { styled } from '@mui/material';
 
 const responsive = {
@@ -42,7 +42,7 @@ const Banners = () => {
             responsive={responsive}>
             {
                 bannerData.map(data => (
-                    <BannerImage src={data.url} alt={`pic-${data.id}`} />
+                    <BannerImage key={data.id} src={data.url} alt={`pic-${data.id}`} />
                 ))
             }
         </Carousel>

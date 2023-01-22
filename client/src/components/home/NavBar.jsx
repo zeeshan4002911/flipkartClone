@@ -1,5 +1,5 @@
 import { Box, styled, Typography } from "@mui/material";
-import {navData} from "../constants/data";
+import {navData} from "../../constants/data";
 
 const Component = styled(Box)`
     display: flex;
@@ -12,7 +12,7 @@ const NavBar = () => {
        <Component>
             {
                 navData.map( data => (
-                    <Box style={{ padding: '12px 8px', textAlign: 'center'}}>
+                    <Box key={data.url} style={{ padding: '12px 8px', textAlign: 'center'}}>
                         <img src={data.url} alt={`${data.text}-pic`} style={{ width: 65}}/>
                         <Typography style={{fontSize: 14}}>{data.text}</Typography>
                     </Box>
