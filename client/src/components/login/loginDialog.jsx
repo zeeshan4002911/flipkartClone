@@ -1,5 +1,7 @@
 import { Box, Button, Dialog, TextField, Typography, styled } from "@mui/material";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { authticateSignUp } from "../../service/api";
+import { DataContext } from "../../context/DataProvider";
 
 const Component = styled(Box)`
     height: 70vh;
@@ -45,11 +47,25 @@ const LoginOrRegister = ({ isOpen, setIsOpen }) => {
         password: "",
         phone: ""
     });
+    const { setAccount } = useContext(DataContext);
+
+    const handleClose = () => {
+        setIsOpen(false);
+        setLoginOrRegister(true);
+    }
 
     const handleRegister = (e) => {
         const value = e.target.value;
         const name = e.target.name;
-        setUserData({...userData, [name]: value});
+        setUserData({ ...userData, [name]: value });
+    }
+
+    const signupUser = async () => {
+        const response = await authticateSignUp(userData);
+        console.log(response);
+        if (!response) return;
+        handleClose();
+        setAccount(userData.firstName);
     }
 
     return (
@@ -80,13 +96,13 @@ const LoginOrRegister = ({ isOpen, setIsOpen }) => {
                         </Wrapper>
                         :
                         <Wrapper>
-                            <TextField variant="standard" label="Enter First Name" name="firstName" onChange={(e) => handleRegister(e)}/>
-                            <TextField variant="standard" label="Enter Last Name" name="lastName" onChange={(e) => handleRegister(e)}/>
-                            <TextField variant="standard" label="Enter User Name" name="userName" onChange={(e) => handleRegister(e)}/>
-                            <TextField variant="standard" label="Enter Email Address" name="email" onChange={(e) => handleRegister(e)}/>
-                            <TextField variant="standard" label="Enter Password" name="password" onChange={(e) => handleRegister(e)}/>
-                            <TextField variant="standard" label="Enter Mobile Number" name="phone" onChange={(e) => handleRegister(e)}/>
-                            <Button style={{ background: "#fb641b", color: "#fff", textTransform: "none" }}>Register</Button>
+                            <TextField variant="standard" label="Enter First Name" name="firstName" onChange={(e) => handleRegister(e)} />
+                            <TextField variant="standard" label="Enter Last Name" name="lastName" onChange={(e) => handleRegister(e)} />
+                            <TextField variant="standard" label="Enter User Name" name="userName" onChange={(e) => handleRegister(e)} />
+                            <TextField variant="standard" label="Enter Email Address" name="email" onChange={(e) => handleRegister(e)} />
+                            <TextField variant="standard" type="password" label="Enter Password" name="password" onChange={(e) => handleRegister(e)} />
+                            <TextField variant="standard" label="Enter Mobile Number" name="phone" onChange={(e) => handleRegister(e)} />
+                            <Button onClick={() => signupUser()} style={{ background: "#fb641b", color: "#fff", textTransform: "none" }}>Register</Button>
                         </Wrapper>
                 }
             </Component>
