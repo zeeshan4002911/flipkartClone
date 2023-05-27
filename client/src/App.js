@@ -1,18 +1,19 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/header/Header';
 import Home from "./components/home/Home";
-import DataProvider from './context/DataProvider';
+import ContextProvider from './context/DataProvider';
 
 import { Box } from '@mui/material';
 
 function App() {
     return (
-        <DataProvider>
+        <ContextProvider>
             <Header />
             <Box style={{ marginTop: 55}}>
                 <Home />
             </Box>
-        </DataProvider>
+        </ContextProvider>
     )
 }
 export default App;

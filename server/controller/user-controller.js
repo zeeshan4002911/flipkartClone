@@ -19,7 +19,7 @@ const userSignup = async (req, res) => {
             status: 'Success',
             message: user
         })
-        
+
     } catch (err) {
         return res.status(500).json({
             status: 'Failed',
@@ -28,4 +28,28 @@ const userSignup = async (req, res) => {
     }
 }
 
-module.exports = { userSignup }
+const userLogin = async (req, res) => {
+    try {
+        let user = await User.findOne({ username: req.body.username, password: req.body.password });
+
+        if (!user) {
+            return res.status(401).json({
+                status: 'Failed',
+                message: 'Invalid Login'
+            })
+        }
+
+        return res.status(200).json({
+            status: 'Success',
+            message: 'Login Succesfull'
+        })
+
+    } catch (err) {
+        return res.status(500).json({
+            status: 'Failed',
+            message: err.message
+        })
+    }
+}
+
+module.exports = { userSignup, userLogin }
